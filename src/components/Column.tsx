@@ -2,7 +2,7 @@ import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import TaskContainer from "./Task";
 import { Task } from "../App";
 
-function Column<T>(props: {
+function ColumnTaskContainer<T>(props: {
   id: string;
   title: string;
   tasks: Task<T>[];
@@ -16,9 +16,7 @@ function Column<T>(props: {
   });
 
   return (
-    <div key={props.id} className="bg-gray-200 h-full w-60 p-2">
-      <p>{props.title}</p>
-
+    <div key={props.id}>
       <div ref={setNodeRef}>
         <SortableContext items={props.tasks}>
           {props.tasks.map((task) => (
@@ -32,4 +30,4 @@ function Column<T>(props: {
   );
 }
 
-export default Column;
+export default ColumnTaskContainer;

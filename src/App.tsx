@@ -15,7 +15,7 @@ import {
 } from "@dnd-kit/sortable";
 import React from "react";
 import { defaultCols, defaultTasks } from "./data";
-import Column from "./components/Column";
+import ColumnTaskContainer from "./components/Column";
 import TaskElement from "./components/TaskElement";
 
 export type Column<T> = {
@@ -34,6 +34,7 @@ type BoardProps<T, C> = {
   tasks: Task<T>[];
   columns: Column<C>[];
   taskElement: (task: Task<T>) => React.ReactNode;
+  colHeaderElement: (col: Column<C>) => React.ReactNode;
 };
 
 function Board<T, C>(props: BoardProps<T, C>) {
@@ -160,14 +161,17 @@ function Board<T, C>(props: BoardProps<T, C>) {
         <div className="flex h-full gap-4 p-5">
           <SortableContext items={columns}>
             {columns.map((col) => (
-              <Column
-                key={col.id}
-                id={col.id}
-                title={col.title}
-                tasks={tasks.filter((t) => t.columnId === col.id)}
-              >
-                {(task) => props.taskElement(task)}
-              </Column>
+              <div className="bg-gray-200 h-full w-60 p-2">
+                <div> {props.colHeaderElement(col)}</div>
+                <ColumnTaskContainer
+                  key={col.id}
+                  id={col.id}
+                  title={col.title}
+                  tasks={tasks.filter((t) => t.columnId === col.id)}
+                >
+                  {(task) => props.taskElement(task)}
+                </ColumnTaskContainer>
+              </div>
             ))}
           </SortableContext>
         </div>
@@ -182,6 +186,7 @@ function App() {
       columns={defaultCols}
       tasks={defaultTasks}
       taskElement={(task) => <TaskElement task={task} />}
+      colHeaderElement={(col) => <div>Hello {col.id}</div>}
     />
   );
 }

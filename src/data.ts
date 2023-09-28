@@ -1,4 +1,4 @@
-import { Column, Task } from "./App";
+import { ColumnTaskContainer, Task } from "./App";
 
 export const defaultCols: Column<string>[] = [
   {
