@@ -1,10 +1,11 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { Task } from "../App";
 
-function TaskContainer(props: { id: string; content: string }) {
+function TaskContainer<T>(props: { task: Task<T>; children: React.ReactNode }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
-      id: props.id,
+      id: props.task.id,
       data: { type: "Task" },
     });
 
@@ -19,9 +20,9 @@ function TaskContainer(props: { id: string; content: string }) {
       style={style}
       {...attributes}
       {...listeners}
-      className="bg-white p-2 m-2 h-20 min-h-20"
+      className="p-1 m-1 h-20 min-h-20 bg-purple-400"
     >
-      {props.content}
+      {props.children}
     </div>
   );
 }

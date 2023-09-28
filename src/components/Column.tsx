@@ -1,10 +1,14 @@
-import { SortableContext } from "@dnd-kit/sortable";
-import { useDroppable } from "@dnd-kit/core";
+import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import TaskContainer from "./Task";
 import { Task } from "../App";
 
-function Column(props: { id: string; title: string; tasks: Task[] }) {
-  const { setNodeRef } = useDroppable({
+function Column<T>(props: {
+  id: string;
+  title: string;
+  tasks: Task<T>[];
+  children: (task: Task<T>) => React.ReactNode;
+}) {
+  const { setNodeRef } = useSortable({
     id: props.id,
     data: {
       type: "Column",
@@ -18,7 +22,9 @@ function Column(props: { id: string; title: string; tasks: Task[] }) {
       <div ref={setNodeRef}>
         <SortableContext items={props.tasks}>
           {props.tasks.map((task) => (
-            <TaskContainer key={task.id} id={task.id} content={task.content} />
+            <TaskContainer key={task.id} task={task}>
+              {props.children(task)}
+            </TaskContainer>
           ))}
         </SortableContext>
       </div>

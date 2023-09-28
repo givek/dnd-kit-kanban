@@ -1,82 +1,87 @@
-export const defaultCols: Column[] = [
+import { Column, Task } from "./App";
+
+export const defaultCols: Column<string>[] = [
   {
     id: "todo",
     title: "Todo",
+    data: "somedata-todo",
   },
   {
     id: "doing",
     title: "Work in progress",
+    data: "somedata-doing",
   },
   {
     id: "done",
     title: "Done",
+    data: "somedata-done",
   },
 ];
 
-export const defaultTasks: Task[] = [
+export const defaultTasks: Task<string>[] = [
   {
     id: "1",
     columnId: "todo",
-    content: "List admin APIs for dashboard",
+    data: "List admin APIs for dashboard",
   },
   {
     id: "2",
     columnId: "todo",
-    content: "Develop user registration functionality",
+    data: "Develop user registration functionality",
   },
   {
     id: "3",
     columnId: "doing",
-    content: "Conduct security testing",
+    data: "Conduct security testing",
   },
   {
     id: "4",
     columnId: "doing",
-    content: "Analyze competitors",
+    data: "Analyze competitors",
   },
   // {
   //   id: "5",
   //   columnId: "done",
-  //   content: "Create UI kit documentation",
+  //   data: "Create UI kit documentation",
   // },
   // {
   //   id: "6",
   //   columnId: "done",
-  //   content: "Dev meeting",
+  //   data: "Dev meeting",
   // },
   // {
   //   id: "7",
   //   columnId: "done",
-  //   content: "Deliver dashboard prototype",
+  //   data: "Deliver dashboard prototype",
   // },
   {
     id: "8",
     columnId: "todo",
-    content: "Optimize application performance",
+    data: "Optimize application performance",
   },
   {
     id: "9",
     columnId: "todo",
-    content: "Implement data validation",
+    data: "Implement data validation",
   },
   {
     id: "10",
     columnId: "todo",
-    content: "Design database schema",
+    data: "Design database schema",
   },
   {
     id: "11",
     columnId: "todo",
-    content: "Integrate SSL web certificates into workflow",
+    data: "Integrate SSL web certificates into workflow",
   },
   {
     id: "12",
     columnId: "doing",
-    content: "Implement error logging and monitoring",
+    data: "Implement error logging and monitoring",
   },
   {
     id: "13",
     columnId: "doing",
-    content: "Design and implement responsive UI",
+    data: "Design and implement responsive UI",
   },
 ];
